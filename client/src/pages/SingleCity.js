@@ -46,7 +46,7 @@ const SingleCity = () => {
       </div>
 
       <div className="my-5">
-        <FoodList comments={city.foods} />
+        <FoodList foods={city.foods} />
       </div>
       <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
         <FoodForm cityId={city._id} />
