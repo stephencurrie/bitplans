@@ -1,21 +1,21 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought } = require('../models');
+const { User, City } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('thoughts');
+      return User.find().populate('cities');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('thoughts');
+      return User.findOne({ username }).populate('cities');
     },
-    thoughts: async (parent, { username }) => {
+    cities: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Thought.find(params).sort({ createdAt: -1 });
+      return City.find(params).sort({ createdAt: -1 });
     },
-    thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+    city: async (parent, { cityId }) => {
+      return City.findOne({ _id: cityId });
     },
   },
 
@@ -42,19 +42,19 @@ const resolvers = {
 
       return { token, user };
     },
-    addThought: async (parent, { thoughtText, thoughtAuthor }) => {
-      const thought = await Thought.create({ thoughtText, thoughtAuthor });
+    addCity: async (parent, { cityText, cityAuthor }) => {
+      const city = await City.create({ cityText, cityAuthor });
 
       await User.findOneAndUpdate(
-        { username: thoughtAuthor },
-        { $addToSet: { thoughts: thought._id } }
+        { username: cityAuthor },
+        { $addToSet: { cities: city._id } }
       );
 
-      return thought;
+      return city;
     },
-    addComment: async (parent, { thoughtId, commentText, commentAuthor }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
+    addComment: async (parent, { cityId, commentText, commentAuthor }) => {
+      return City.findOneAndUpdate(
+        { _id: cityId },
         {
           $addToSet: { comments: { commentText, commentAuthor } },
         },
@@ -64,12 +64,12 @@ const resolvers = {
         }
       );
     },
-    removeThought: async (parent, { thoughtId }) => {
-      return Thought.findOneAndDelete({ _id: thoughtId });
+    removeCity: async (parent, { cityId }) => {
+      return City.findOneAndDelete({ _id: cityId });
     },
-    removeComment: async (parent, { thoughtId, commentId }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
+    removeComment: async (parent, { cityId, commentId }) => {
+      return City.findOneAndUpdate(
+        { _id: cityId },
         { $pull: { comments: { _id: commentId } } },
         { new: true }
       );

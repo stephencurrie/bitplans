@@ -1,15 +1,15 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const thoughtSchema = new Schema({
-  thoughtText: {
+const citySchema = new Schema({
+  cityText: {
     type: String,
-    required: 'You need to leave a thought!',
+    required: 'You need to add a city!',
     minlength: 1,
     maxlength: 280,
     trim: true,
   },
-  thoughtAuthor: {
+  cityAuthor: {
     type: String,
     required: true,
     trim: true,
@@ -40,6 +40,6 @@ const thoughtSchema = new Schema({
   ],
 });
 
-const Thought = model('Thought', thoughtSchema);
+const City = model('City', citySchema);
 
-module.exports = Thought;
+module.exports = City;

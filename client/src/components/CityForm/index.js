@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_THOUGHT } from '../../utils/mutations';
-import { QUERY_THOUGHTS } from '../../utils/queries';
+import { ADD_CITY } from '../../utils/mutations';
+import { QUERY_CITIES } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-const ThoughtForm = () => {
-  const [thoughtText, setThoughtText] = useState('');
+const CityForm = () => {
+  const [cityText, setCityText] = useState('');
 
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addThought, { error }] = useMutation(ADD_THOUGHT, {
-    update(cache, { data: { addThought } }) {
+  const [addCity, { error }] = useMutation(ADD_CITY, {
+    update(cache, { data: { addCity } }) {
       try {
-        const { thoughts } = cache.readQuery({ query: QUERY_THOUGHTS });
+        const { cities } = cache.readQuery({ query: QUERY_CITIES });
 
         cache.writeQuery({
-          query: QUERY_THOUGHTS,
-          data: { thoughts: [addThought, ...thoughts] },
+          query: QUERY_CITIES,
+          data: { cities: [addCity, ...cities] },
         });
       } catch (e) {
         console.error(e);
@@ -31,14 +31,14 @@ const ThoughtForm = () => {
     event.preventDefault();
 
     try {
-      const { data } = await addThought({
+      const { data } = await addCity({
         variables: {
-          thoughtText,
-          thoughtAuthor: Auth.getProfile().data.username,
+          cityText,
+          cityAuthor: Auth.getProfile().data.username,
         },
       });
 
-      setThoughtText('');
+      setCityText('');
     } catch (err) {
       console.error(err);
     }
@@ -47,8 +47,8 @@ const ThoughtForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'thoughtText' && value.length <= 280) {
-      setThoughtText(value);
+    if (name === 'cityText' && value.length <= 280) {
+      setCityText(value);
       setCharacterCount(value.length);
     }
   };
@@ -72,9 +72,9 @@ const ThoughtForm = () => {
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="thoughtText"
-                placeholder="Here's a new thought..."
-                value={thoughtText}
+                name="cityText"
+                placeholder="Here's a new city..."
+                value={cityText}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
@@ -83,7 +83,7 @@ const ThoughtForm = () => {
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Thought
+                Add City
               </button>
             </div>
             {error && (
@@ -95,7 +95,7 @@ const ThoughtForm = () => {
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
+          You need to be logged in to add a city. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
@@ -103,4 +103,4 @@ const ThoughtForm = () => {
   );
 };
 
-export default ThoughtForm;
+export default CityForm;

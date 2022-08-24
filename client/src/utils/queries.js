@@ -6,32 +6,32 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      thoughts {
+      cities {
         _id
-        thoughtText
+        cityText
         createdAt
       }
     }
   }
 `;
 
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
+export const QUERY_CITIES = gql`
+  query getCities {
+    cities {
       _id
-      thoughtText
-      thoughtAuthor
+      cityText
+      cityAuthor
       createdAt
     }
   }
 `;
 
-export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
+export const QUERY_SINGLE_CITY = gql`
+  query getSingleCity($cityId: ID!) {
+    city(cityId: $cityId) {
       _id
-      thoughtText
-      thoughtAuthor
+      cityText
+      cityAuthor
       createdAt
       comments {
         _id

@@ -1,0 +1,42 @@
+[
+  {
+    "cityText": "Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?",
+    "cityAuthor": "Brian Kernighan"
+  },
+  {
+    "cityText": "Some of the best programming is done on paper, really. Putting it into the computer is just a minor detail.",
+    "cityAuthor": "Max Kanat-Alexander"
+  },
+  {
+    "cityText": "When you don't create things, you become defined by your tastes rather than ability. Your tastes only narrow & exclude people. So create.",
+    "cityAuthor": "Why The Lucky Stiff"
+  },
+  {
+    "cityText": "I'm not a great programmer; I'm just a good programmer with great habits.",
+    "cityAuthor": "Kent Beck"
+  },
+  {
+    "cityText": "Walking on water and developing software from a specification are easy if both are frozen.",
+    "cityAuthor": "Edward V. Berard"
+  },
+  {
+    "cityText": "The most disastrous thing that you can ever learn is your first programming language.",
+    "cityAuthor": "Alan Kay"
+  },
+  {
+    "cityText": "The most important property of a program is whether it accomplishes the intention of its user.",
+    "cityAuthor": "C.A.R. Hoare"
+  },
+  {
+    "cityText": "Delivering good software today is often better than perfect software tomorrow, so finish things and ship.",
+    "cityAuthor": "David Thomas"
+  },
+  {
+    "cityText": "If you optimize everything, you will always be unhappy.",
+    "cityAuthor": "Donald Knuth"
+  },
+  {
+    "cityText": "It's not a bug; it's an undocumented feature.",
+    "cityAuthor": "Lernantino"
+  }
+]
