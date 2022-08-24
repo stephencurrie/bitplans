@@ -14,13 +14,13 @@ const typeDefs = gql`
     cityText: String
     cityAuthor: String
     createdAt: String
-    comments: [Comment]!
+    foods: [Food]!
   }
 
-  type Comment {
+  type Food {
     _id: ID
-    commentText: String
-    commentAuthor: String
+    foodText: String
+    foodAuthor: String
     createdAt: String
   }
 
@@ -40,13 +40,13 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addCity(cityText: String!, cityAuthor: String!): City
-    addComment(
+    addFood(
       cityId: ID!
-      commentText: String!
-      commentAuthor: String!
+      foodText: String!
+      foodAuthor: String!
     ): City
     removeCity(cityId: ID!): City
-    removeComment(cityId: ID!, commentId: ID!): City
+    removeFood(cityId: ID!, foodId: ID!): City
   }
 `;
 

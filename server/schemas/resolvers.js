@@ -52,11 +52,11 @@ const resolvers = {
 
       return city;
     },
-    addComment: async (parent, { cityId, commentText, commentAuthor }) => {
+    addFood: async (parent, { cityId, foodText, foodAuthor }) => {
       return City.findOneAndUpdate(
         { _id: cityId },
         {
-          $addToSet: { comments: { commentText, commentAuthor } },
+          $addToSet: { foods: { foodText, foodAuthor } },
         },
         {
           new: true,
@@ -67,10 +67,10 @@ const resolvers = {
     removeCity: async (parent, { cityId }) => {
       return City.findOneAndDelete({ _id: cityId });
     },
-    removeComment: async (parent, { cityId, commentId }) => {
+    removeFood: async (parent, { cityId, foodId }) => {
       return City.findOneAndUpdate(
         { _id: cityId },
-        { $pull: { comments: { _id: commentId } } },
+        { $pull: { foods: { _id: foodId } } },
         { new: true }
       );
     },

@@ -31,32 +31,32 @@ export const ADD_CITY = gql`
       cityText
       cityAuthor
       createdAt
-      comments {
+      foods {
         _id
-        commentText
+        foodText
       }
     }
   }
 `;
 
-export const ADD_COMMENT = gql`
-  mutation addComment(
+export const ADD_FOOD = gql`
+  mutation addFood(
     $cityId: ID!
-    $commentText: String!
-    $commentAuthor: String!
+    $foodText: String!
+    $foodAuthor: String!
   ) {
-    addComment(
+    addFood(
       cityId: $cityId
-      commentText: $commentText
-      commentAuthor: $commentAuthor
+      foodText: $foodText
+      foodAuthor: $foodAuthor
     ) {
       _id
       cityText
       cityAuthor
       createdAt
-      comments {
+      foods {
         _id
-        commentText
+        foodText
         createdAt
       }
     }

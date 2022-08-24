@@ -19,15 +19,15 @@ const citySchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-  comments: [
+  foods: [
     {
-      commentText: {
+      foodText: {
         type: String,
         required: true,
         minlength: 1,
         maxlength: 280,
       },
-      commentAuthor: {
+      foodAuthor: {
         type: String,
         required: true,
       },

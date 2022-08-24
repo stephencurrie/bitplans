@@ -25,7 +25,7 @@ const Footer = () => {
           >
             ❤️
           </span>{' '}
-          by the Tech Bit Plan team.
+          by the Bit Plan team.
         </h4>
       </div>
     </footer>

@@ -4,8 +4,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import CommentList from '../components/CommentList';
-import CommentForm from '../components/CommentForm';
+import FoodList from '../components/FoodList';
+import FoodForm from '../components/FoodForm';
 
 import { QUERY_SINGLE_CITY } from '../utils/queries';
 
@@ -46,10 +46,10 @@ const SingleCity = () => {
       </div>
 
       <div className="my-5">
-        <CommentList comments={city.comments} />
+        <FoodList comments={city.foods} />
       </div>
       <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm cityId={city._id} />
+        <FoodForm cityId={city._id} />
       </div>
     </div>
   );

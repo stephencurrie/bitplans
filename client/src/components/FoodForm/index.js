@@ -2,29 +2,29 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_COMMENT } from '../../utils/mutations';
+import { ADD_FOOD } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-const CommentForm = ({ cityId }) => {
-  const [commentText, setCommentText] = useState('');
+const FoodForm = ({ cityId }) => {
+  const [foodText, setFoodText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addComment, { error }] = useMutation(ADD_COMMENT);
+  const [addFood, { error }] = useMutation(ADD_FOOD);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await addComment({
+      const { data } = await addFood({
         variables: {
           cityId,
-          commentText,
-          commentAuthor: Auth.getProfile().data.username,
+          foodText,
+          foodAuthor: Auth.getProfile().data.username,
         },
       });
 
-      setCommentText('');
+      setFoodText('');
     } catch (err) {
       console.error(err);
     }
@@ -33,15 +33,15 @@ const CommentForm = ({ cityId }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'commentText' && value.length <= 280) {
-      setCommentText(value);
+    if (name === 'foodText' && value.length <= 280) {
+      setFoodText(value);
       setCharacterCount(value.length);
     }
   };
 
   return (
     <div>
-      <h4>What are your thoughts on this city?</h4>
+      <h4>Add your restaurants</h4>
 
       {Auth.loggedIn() ? (
         <>
@@ -59,9 +59,9 @@ const CommentForm = ({ cityId }) => {
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="commentText"
-                placeholder="Add your comment..."
-                value={commentText}
+                name="foodText"
+                placeholder="Add your restaurants..."
+                value={foodText}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
@@ -70,7 +70,7 @@ const CommentForm = ({ cityId }) => {
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Comment
+                Add Restaurant
               </button>
             </div>
           </form>
@@ -85,4 +85,4 @@ const CommentForm = ({ cityId }) => {
   );
 };
 
-export default CommentForm;
+export default FoodForm;

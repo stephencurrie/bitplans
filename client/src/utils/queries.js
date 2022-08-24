@@ -33,9 +33,9 @@ export const QUERY_SINGLE_CITY = gql`
       cityText
       cityAuthor
       createdAt
-      comments {
+      foods {
         _id
-        commentText
+        foodText
         createdAt
       }
     }
